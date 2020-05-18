@@ -37,7 +37,7 @@
   const stopButton = document.querySelector('#stop');
   msg.text = document.querySelector('[name="text"]').value;
 
- function populateVoices() {
+  function populateVoices() {
     voices = this.getVoices();
     voicesDropdown.innerHTML = voices
       .filter(voice => voice.lang.includes('en'))
@@ -45,7 +45,12 @@
       .join('');
   }
 
+  function setVoice() {
+    msg.voice = voices.find(voice => voice.name === this.value);
+  }
+
   speechSynthesis.addEventListener('voiceschanged', populateVoices);
+  voicesDropdown.addEventListener('change', setVoice);
 
 </script>
 
